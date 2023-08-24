@@ -1,6 +1,6 @@
 const AddExpense = () => {
   return (
-    <div className="m-2">
+    <div>
       <h2 className="h4">Add Expense</h2>
       <hr />
       <form>
@@ -19,9 +19,9 @@ const AddExpense = () => {
             type="number"
             placeholder="Some amount..."
           />
-          <sub className="text-secondary">
+          <p style={{fontSize: "0.7em"}} className="text-secondary text-end mb-0">
             *(Negative - expense, positive - income)
-          </sub>
+          </p>
         </div>
         <input
           className="btn shadow bg-warning w-100 rounded-0"

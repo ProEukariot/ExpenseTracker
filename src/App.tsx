@@ -9,11 +9,18 @@ import HistoryList from "./components/HistoryList";
 
 function App() {
   return (
-    <div className="container d-flex flex-column align-items-center my-2">
+    // container d-flex flex-column align-items-center
+    <div className="my-2 text-center container-md p-0 px-2">
       <Header />
-      <Balance />
-      <MiniDashboard />
-      <AddExpense />
+      <div className="row my-2">
+        <div className="col-sm-6 mb-2">
+          <Balance />
+          <MiniDashboard />
+        </div>
+        <div className="col-sm-6">
+          <AddExpense />
+        </div>
+      </div>
       <HistoryList />
     </div>
   );

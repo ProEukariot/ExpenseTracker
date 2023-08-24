@@ -2,7 +2,7 @@ const spanStyle = { width: "4px", height: "100%", top: 0, right: 0 };
 
 const HistoryList = () => {
   return (
-    <div className="m-2">
+    <div className="text-start">
       <h2>History</h2>
       <hr />
       <ul className="list-group rounded-0">
