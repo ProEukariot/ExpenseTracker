@@ -47,4 +47,4 @@ const Provider = ({ children }: ProviderProps) => {
   );
 };
 
-export { Context, Provider };
+export { Context, Provider, Expense };
