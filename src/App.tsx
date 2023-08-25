@@ -1,5 +1,6 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 import Header from "./components/Header";
 import Balance from "./components/Balance";
@@ -7,6 +8,8 @@ import AddExpense from "./components/AddExpense";
 import HistoryList from "./components/HistoryList";
 
 function App() {
+  useLocalStorage();
+
   return (
     <div className="my-2 text-center container-md p-0 px-2">
       <Header />

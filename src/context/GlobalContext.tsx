@@ -24,10 +24,18 @@ type ProviderProps = {
   children: React.ReactNode;
 };
 
-type ActionArg = {
-  type: "add" | "remove";
-  payload: Expense;
-};
+// type ActionArg = {
+//   type: "add" | "remove" | "set";
+//   payload: Expense | Expense[];
+// };
+
+type ActionArg =
+  | {
+      type: "add";
+      payload: Expense;
+    }
+  | { type: "set"; payload: Expense[] }
+  | { type: "remove"; payload: null };
 
 const initState: Expense[] = [];
 
@@ -37,6 +45,8 @@ const reducer = (state: Expense[], action: ActionArg) => {
       return [...state, action.payload];
     case "remove":
       return [...state];
+    case "set":
+      return action.payload;
     default:
       return state;
   }
