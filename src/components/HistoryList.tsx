@@ -11,15 +11,27 @@ const HistoryList = () => {
       <h2>History</h2>
       <hr />
       <ul className="list-group rounded-0">
-        {expenseProvider.state.map((expense) => (
-          <li key={expense.id} className="list-group-item position-relative">
-            {expense.text} ({expense.amount})
-            <span
-              className="position-absolute bg-primary"
-              style={spanStyle}
-            ></span>
-          </li>
-        ))}
+        {expenseProvider.state.map((expense) => {
+          let sign = expense.amount > 0 ? "+" : "-";
+          return (
+            <li
+              key={expense.id}
+              className="list-group-item position-relative d-flex justify-content-between"
+            >
+              <div>{expense.text}</div>{" "}
+              <div>
+                {sign}${Math.abs(expense.amount).toFixed(2)}
+              </div>
+              <span
+                className={
+                  "position-absolute " +
+                  (expense.amount <= 0 ? "bg-danger" : "bg-success")
+                }
+                style={spanStyle}
+              ></span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

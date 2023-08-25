@@ -1,9 +1,11 @@
 import { useState, useContext } from "react";
 import { Expense, Context } from "../context/GlobalContext";
 
+const initState = { name: "", amount: "" };
+
 const AddExpense = () => {
-  const [name, setName] = useState("");
-  const [amount, setAmount] = useState<number>(0);
+  const [name, setName] = useState(initState.name);
+  const [amount, setAmount] = useState(initState.amount);
   const expenseProvider = useContext(Context);
 
   const [errors, setErrors] = useState<string[]>([]);
@@ -27,10 +29,12 @@ const AddExpense = () => {
       if (!validated) return;
     }
 
-    const new_exp = new Expense(amount, name);
+    const new_exp = new Expense(+amount, name);
 
     expenseProvider.dispatch({ type: "add", payload: new_exp });
-    // alert(exp.amount + " " + exp.id + " " + exp.text);
+
+    setName(initState.name);
+    setAmount(initState.amount);
   };
 
   return (
@@ -63,11 +67,11 @@ const AddExpense = () => {
             type="number"
             placeholder="Some amount..."
             value={amount}
-            onChange={(e) => setAmount(+e.target.value)}
+            onChange={(e) => setAmount(e.target.value)}
           />
           <p
             style={{ fontSize: "0.7em" }}
-            className="text-secondary text-end mb-0"
+            className="text-secondary text-end mt-1 mb-0"
           >
             *(Negative - expense, positive - income)
           </p>

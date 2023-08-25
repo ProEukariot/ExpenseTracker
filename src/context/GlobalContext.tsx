@@ -3,19 +3,22 @@ import { createContext, useReducer } from "react";
 class Expense {
   public id: number;
 
-  constructor(public amount: number, public text?: string) {
+  constructor(public amount: number, public text: string) {
     this.id = Math.floor(Math.random() * 1_000_000);
   }
 }
 
-const list: Expense[] = [new Expense(200), new Expense(-140, "on car")];
+const list: Expense[] = [
+  new Expense(200, "ewqeqw"),
+  new Expense(-140, "on car"),
+];
 
-type ContextArg = {
+type ExpenseMutator = {
   state: Expense[];
   dispatch: React.Dispatch<ActionArg>;
 };
 
-const Context = createContext<ContextArg>({} as ContextArg);
+const Context = createContext<ExpenseMutator>({} as ExpenseMutator);
 
 type ProviderProps = {
   children: React.ReactNode;
@@ -26,7 +29,7 @@ type ActionArg = {
   payload: Expense;
 };
 
-const initState: Expense[] = list; //[]
+const initState: Expense[] = [];
 
 const reducer = (state: Expense[], action: ActionArg) => {
   switch (action.type) {
