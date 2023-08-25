@@ -23,7 +23,7 @@ type ProviderProps = {
 
 type ActionArg = {
   type: "add" | "remove";
-  payload?: string;
+  payload: Expense;
 };
 
 const initState: Expense[] = list; //[]
@@ -31,7 +31,7 @@ const initState: Expense[] = list; //[]
 const reducer = (state: Expense[], action: ActionArg) => {
   switch (action.type) {
     case "add":
-      return [...state, new Expense(200, "acr")];
+      return [...state, action.payload];
     case "remove":
       return [...state];
     default:

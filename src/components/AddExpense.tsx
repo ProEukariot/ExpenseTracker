@@ -1,16 +1,36 @@
-import { useState } from "react";
-import { Expense } from "../context/GlobalContext";
+import { useState, useContext } from "react";
+import { Expense, Context } from "../context/GlobalContext";
 
 const AddExpense = () => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState<number>(0);
+  const expenseProvider = useContext(Context);
+
+  const [errors, setErrors] = useState<string[]>([]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const exp = new Expense(amount, name);
+    {
+      let validated = true;
+      setErrors([]);
 
-    alert(exp.amount + " " + exp.id + " " + exp.text);
+      if (!name) {
+        validated = false;
+        setErrors((curr) => [...curr, "Name is required"]);
+      }
+      if (!amount) {
+        validated = false;
+        setErrors((curr) => [...curr, "Amount can't be 0"]);
+      }
+
+      if (!validated) return;
+    }
+
+    const new_exp = new Expense(amount, name);
+
+    expenseProvider.dispatch({ type: "add", payload: new_exp });
+    // alert(exp.amount + " " + exp.id + " " + exp.text);
   };
 
   return (
@@ -52,6 +72,13 @@ const AddExpense = () => {
             *(Negative - expense, positive - income)
           </p>
         </div>
+        <ul>
+          {errors.map((error) => (
+            <li key={error} className="text-danger">
+              {error}
+            </li>
+          ))}
+        </ul>
         <input
           className="btn shadow bg-warning w-100 rounded-0"
           type="submit"
