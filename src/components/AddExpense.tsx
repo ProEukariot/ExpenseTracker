@@ -23,7 +23,7 @@ const AddExpense = () => {
       }
       if (!amount) {
         validated = false;
-        setErrors((curr) => [...curr, "Amount can't be 0"]);
+        setErrors((curr) => [...curr, "Amount can't required"]);
       }
 
       if (!validated) return;
