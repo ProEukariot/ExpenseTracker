@@ -35,7 +35,7 @@ type ActionArg =
       payload: Expense;
     }
   | { type: "set"; payload: Expense[] }
-  | { type: "remove"; payload: null };
+  | { type: "remove"; payload: number };
 
 const initState: Expense[] = [];
 
@@ -44,7 +44,7 @@ const reducer = (state: Expense[], action: ActionArg) => {
     case "add":
       return [...state, action.payload];
     case "remove":
-      return [...state];
+      return state.filter((expense) => expense.id !== action.payload);
     case "set":
       return action.payload;
     default:

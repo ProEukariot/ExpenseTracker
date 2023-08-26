@@ -1,0 +1,8 @@
+.withBtn > .delBtn {
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.withBtn:hover > .delBtn {
+  opacity: 1;
+}
